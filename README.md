@@ -1,5 +1,11 @@
 # FlowLens.vim
 
+
+
+https://github.com/user-attachments/assets/6eb8cf91-2480-4f36-9d7e-35b7e77431af
+
+
+
 Neural information-flow highlighting for **Vim and Neovim**, computed from raw
 C bytes by a recurrent network with hand-written weights.
 
