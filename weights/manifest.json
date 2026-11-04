@@ -1,0 +1,482 @@
+{
+  "limits": {
+    "NMAXB": 2048,
+    "TMAX": 512,
+    "P": 16,
+    "A": 64,
+    "S": 48,
+    "NODES": 192,
+    "KCLOSURE": 8,
+    "DMAX": 8,
+    "NC": 27,
+    "NL": 9,
+    "NS": 26,
+    "NF": 18,
+    "NKW": 17,
+    "NC2": 169
+  },
+  "tensors": {
+    "W_byte_class": {
+      "shape": [
+        256,
+        27
+      ],
+      "dense": 6912,
+      "nonzero": 256,
+      "bytes_f32": 27648
+    },
+    "W_alpha": {
+      "shape": [
+        256,
+        64
+      ],
+      "dense": 16384,
+      "nonzero": 63,
+      "bytes_f32": 65536
+    },
+    "W_kw_code": {
+      "shape": [
+        17,
+        16,
+        64
+      ],
+      "dense": 17408,
+      "nonzero": 78,
+      "bytes_f32": 69632
+    },
+    "v_kw_len": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 17,
+      "bytes_f32": 68
+    },
+    "v_kw_type": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 11,
+      "bytes_f32": 68
+    },
+    "v_kw_ret": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 1,
+      "bytes_f32": 68
+    },
+    "v_kw_if": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 1,
+      "bytes_f32": 68
+    },
+    "v_kw_else": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 1,
+      "bytes_f32": 68
+    },
+    "v_kw_while": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 1,
+      "bytes_f32": 68
+    },
+    "v_kw_for": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 1,
+      "bytes_f32": 68
+    },
+    "v_kw_do": {
+      "shape": [
+        17
+      ],
+      "dense": 17,
+      "nonzero": 1,
+      "bytes_f32": 68
+    },
+    "W_lex": {
+      "shape": [
+        9,
+        243
+      ],
+      "dense": 2187,
+      "nonzero": 2187,
+      "bytes_f32": 8748
+    },
+    "W_opener": {
+      "shape": [
+        9,
+        9
+      ],
+      "dense": 81,
+      "nonzero": 3,
+      "bytes_f32": 324
+    },
+    "v_lex_code": {
+      "shape": [
+        9
+      ],
+      "dense": 9,
+      "nonzero": 2,
+      "bytes_f32": 36
+    },
+    "v_lex_commentish": {
+      "shape": [
+        9
+      ],
+      "dense": 9,
+      "nonzero": 3,
+      "bytes_f32": 36
+    },
+    "v_cls_idchar": {
+      "shape": [
+        27
+      ],
+      "dense": 27,
+      "nonzero": 3,
+      "bytes_f32": 108
+    },
+    "v_cls_alpha": {
+      "shape": [
+        27
+      ],
+      "dense": 27,
+      "nonzero": 1,
+      "bytes_f32": 108
+    },
+    "v_cls_digit": {
+      "shape": [
+        27
+      ],
+      "dense": 27,
+      "nonzero": 1,
+      "bytes_f32": 108
+    },
+    "v_cls_us": {
+      "shape": [
+        27
+      ],
+      "dense": 27,
+      "nonzero": 1,
+      "bytes_f32": 108
+    },
+    "v_cls_quote": {
+      "shape": [
+        27
+      ],
+      "dense": 27,
+      "nonzero": 3,
+      "bytes_f32": 108
+    },
+    "v_cls_punct": {
+      "shape": [
+        27
+      ],
+      "dense": 27,
+      "nonzero": 19,
+      "bytes_f32": 108
+    },
+    "v_cls_op": {
+      "shape": [
+        27
+      ],
+      "dense": 27,
+      "nonzero": 10,
+      "bytes_f32": 108
+    },
+    "W_tokF": {
+      "shape": [
+        27,
+        18
+      ],
+      "dense": 486,
+      "nonzero": 19,
+      "bytes_f32": 1944
+    },
+    "W_gsm": {
+      "shape": [
+        26,
+        7488
+      ],
+      "dense": 194688,
+      "nonzero": 194688,
+      "bytes_f32": 778752
+    },
+    "v_anom2": {
+      "shape": [
+        8424
+      ],
+      "dense": 8424,
+      "nonzero": 45,
+      "bytes_f32": 33696
+    },
+    "v_out_compound": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 32,
+      "bytes_f32": 29952
+    },
+    "v_out_read": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 112,
+      "bytes_f32": 29952
+    },
+    "v_out_assign": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 32,
+      "bytes_f32": 29952
+    },
+    "v_out_declinit": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_out_declterm": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_out_paramwrite": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_out_retend": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_out_barrier": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 1248,
+      "bytes_f32": 29952
+    },
+    "v_out_commit": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 1712,
+      "bytes_f32": 29952
+    },
+    "v_open_if": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_open_else": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_open_while": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_open_plain": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 32,
+      "bytes_f32": 29952
+    },
+    "v_open_for": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_open_do": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_open_if_u": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 272,
+      "bytes_f32": 29952
+    },
+    "v_open_else_u": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 256,
+      "bytes_f32": 29952
+    },
+    "v_open_while_u": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 272,
+      "bytes_f32": 29952
+    },
+    "v_open_for_u": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 272,
+      "bytes_f32": 29952
+    },
+    "v_open_do_u": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 272,
+      "bytes_f32": 29952
+    },
+    "v_out_stepinc": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 16,
+      "bytes_f32": 29952
+    },
+    "v_out_close": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 416,
+      "bytes_f32": 29952
+    },
+    "v_out_anomaly": {
+      "shape": [
+        7488
+      ],
+      "dense": 7488,
+      "nonzero": 736,
+      "bytes_f32": 29952
+    },
+    "GT": {
+      "shape": [
+        512,
+        512
+      ],
+      "dense": 262144,
+      "nonzero": 130816,
+      "bytes_f32": 1048576
+    }
+  },
+  "dense_params": 681281,
+  "nonzero_params": 334056,
+  "serialized_bytes": 18580,
+  "grammar_states": [
+    "TOP",
+    "TOP_IDENT",
+    "PARAM_TYPE",
+    "PARAM_NAME",
+    "PARAM_AFTER",
+    "PARAM_END",
+    "STMT",
+    "DECL_NAME",
+    "AFTER_NAME",
+    "AFTER_LHS",
+    "EXPR",
+    "RET_EXPR",
+    "IF_COND",
+    "IF_PEND",
+    "ELSE_PEND",
+    "WHILE_COND",
+    "WHILE_PEND",
+    "FOR_HEAD",
+    "FOR_COND",
+    "FOR_STEP",
+    "FOR_STEP_IDENT",
+    "FOR_PEND",
+    "DO_PEND",
+    "DO_COND",
+    "DO_WHILE_COND",
+    "DO_END"
+  ],
+  "token_classes": [
+    "IDENT",
+    "TYPEKW",
+    "RETKW",
+    "IFKW",
+    "ELSEKW",
+    "WHILEKW",
+    "FORKW",
+    "DOKW",
+    "NUM",
+    "EQ",
+    "SEMI",
+    "LBRACE",
+    "RBRACE",
+    "LPAREN",
+    "RPAREN",
+    "COMMA",
+    "OP",
+    "OTHER"
+  ],
+  "blocks": {
+    "W_byte_class": "byte -> 26-way class one-hot (encoding layer)",
+    "W_alpha": "byte -> 64-way character code (spelling alphabet)",
+    "W_kw_code": "12 keyword codewords; exact spelling match by dot+AND",
+    "W_lex": "9x234 lexer transition table (comment/string automaton)",
+    "W_gsm": "grammar transition table over (state x class x context bits)",
+    "v_anom2": "2028-wide two-token-lookahead unsupported-construct detector",
+    "v_out_*": "decoder vectors: read/write/barrier/anomaly pulses",
+    "GT": "positional greater-than mask"
+  }
+}

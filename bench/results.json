@@ -1,0 +1,195 @@
+{
+  "environment": {
+    "system": "macOS-26.6.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "python": "3.9.6",
+    "numpy": "2.0.2",
+    "vim": "VIM - Vi IMproved 9.1 (2024 Jan 02, compiled Jul 31 2026 22:26:31)"
+  },
+  "cold_ms": 49.761416999999994,
+  "rss_mb": 35.25,
+  "weights": {
+    "params_dense": 681281,
+    "params_nonzero": 334056,
+    "weights_bytes": 18580
+  },
+  "rows": [
+    {
+      "name": "bench_chain_04.c",
+      "kind": "chain",
+      "bytes": 125,
+      "tokens": 39,
+      "defs": 9,
+      "encode_ms": 1.04,
+      "infer_ms": 2.08,
+      "total_ms": 3.16,
+      "macs": 76846916,
+      "ops": 805
+    },
+    {
+      "name": "bench_chain_10.c",
+      "kind": "chain",
+      "bytes": 251,
+      "tokens": 81,
+      "defs": 21,
+      "encode_ms": 1.95,
+      "infer_ms": 3.73,
+      "total_ms": 5.74,
+      "macs": 100350176,
+      "ops": 1495
+    },
+    {
+      "name": "bench_chain_25.c",
+      "kind": "chain",
+      "bytes": 596,
+      "tokens": 186,
+      "defs": 51,
+      "encode_ms": 4.31,
+      "infer_ms": 7.68,
+      "total_ms": 12.13,
+      "macs": 168711671,
+      "ops": 3310
+    },
+    {
+      "name": "bench_chain_35.c",
+      "kind": "chain",
+      "bytes": 826,
+      "tokens": 256,
+      "defs": 71,
+      "encode_ms": 5.96,
+      "infer_ms": 10.16,
+      "total_ms": 16.31,
+      "macs": 221296251,
+      "ops": 4520
+    },
+    {
+      "name": "bench_chain_43.c",
+      "kind": "chain",
+      "bytes": 1010,
+      "tokens": 312,
+      "defs": 87,
+      "encode_ms": 7.32,
+      "infer_ms": 12.4,
+      "total_ms": 19.95,
+      "macs": 267401819,
+      "ops": 5488
+    },
+    {
+      "name": "bench_loop_04.c",
+      "kind": "loop",
+      "bytes": 316,
+      "tokens": 90,
+      "defs": 19,
+      "encode_ms": 2.32,
+      "infer_ms": 4.19,
+      "total_ms": 6.6,
+      "macs": 110034306,
+      "ops": 1770
+    },
+    {
+      "name": "bench_loop_10.c",
+      "kind": "loop",
+      "bytes": 491,
+      "tokens": 137,
+      "defs": 28,
+      "encode_ms": 3.48,
+      "infer_ms": 5.91,
+      "total_ms": 9.5,
+      "macs": 139645481,
+      "ops": 2641
+    },
+    {
+      "name": "bench_loop_20.c",
+      "kind": "loop",
+      "bytes": 832,
+      "tokens": 230,
+      "defs": 47,
+      "encode_ms": 5.84,
+      "infer_ms": 9.57,
+      "total_ms": 15.61,
+      "macs": 205097282,
+      "ops": 4350
+    },
+    {
+      "name": "bench_loop_35.c",
+      "kind": "loop",
+      "bytes": 1288,
+      "tokens": 353,
+      "defs": 71,
+      "encode_ms": 8.88,
+      "infer_ms": 14.14,
+      "total_ms": 23.36,
+      "macs": 305491310,
+      "ops": 6624
+    }
+  ],
+  "vim": {
+    "runs": [
+      {
+        "file": "bench_chain_10.c",
+        "encode_ms": 2.207833,
+        "infer_ms": 3.898583,
+        "props": 67,
+        "helper_ms": 6.234041,
+        "bytes": 250,
+        "tokens": 81,
+        "e2e_ms": 58.904,
+        "lines": 13,
+        "wall_ms": 59.268,
+        "render_ms": 2.321
+      },
+      {
+        "file": "bench_chain_25.c",
+        "encode_ms": 4.426625,
+        "infer_ms": 7.931709,
+        "props": 157,
+        "helper_ms": 12.57975,
+        "bytes": 595,
+        "tokens": 186,
+        "e2e_ms": 20.572,
+        "lines": 28,
+        "wall_ms": 20.682,
+        "render_ms": 6.832
+      },
+      {
+        "file": "bench_chain_43.c",
+        "encode_ms": 7.264708,
+        "infer_ms": 12.688542,
+        "props": 265,
+        "helper_ms": 20.352625,
+        "bytes": 1009,
+        "tokens": 312,
+        "e2e_ms": 37.353,
+        "lines": 46,
+        "wall_ms": 37.489,
+        "render_ms": 14.561
+      },
+      {
+        "file": "bench_loop_10.c",
+        "encode_ms": 3.43825,
+        "infer_ms": 6.184,
+        "props": 108,
+        "helper_ms": 9.79575,
+        "bytes": 490,
+        "tokens": 137,
+        "e2e_ms": 15.57,
+        "lines": 20,
+        "wall_ms": 15.662,
+        "render_ms": 4.122
+      },
+      {
+        "file": "bench_loop_35.c",
+        "encode_ms": 8.957791,
+        "infer_ms": 14.430542,
+        "props": 293,
+        "helper_ms": 23.830292,
+        "bytes": 1287,
+        "tokens": 353,
+        "e2e_ms": 42.306,
+        "lines": 51,
+        "wall_ms": 42.452,
+        "render_ms": 17.249
+      }
+    ]
+  }
+}

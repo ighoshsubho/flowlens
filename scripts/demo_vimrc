@@ -1,0 +1,28 @@
+" Minimal vimrc for recording: readable colours, no user config, plugin loaded.
+set nocompatible
+set encoding=utf-8
+set number relativenumber
+set laststatus=2
+set ruler
+set nowrap
+set scrolloff=6
+set background=dark
+set t_Co=256
+silent! colorscheme desert
+execute 'set rtp^=' . expand('<sfile>:p:h:h') . '/vim'
+let g:flowlens_dim = 1
+runtime plugin/flowlens.vim
+
+" Bigger, calmer highlight colours than the defaults for video capture.
+highlight FlowLensSelected ctermbg=25 ctermfg=231 guibg=#0050a0 guifg=#ffffff cterm=bold gui=bold
+highlight FlowLensRelevant ctermbg=28 ctermfg=231 guibg=#1a7f37 guifg=#ffffff cterm=bold gui=bold
+highlight FlowLensDim      ctermfg=240 guifg=#6a6a6a
+
+" Footer showing the keys for the take.
+function! FlowLensFooter() abort
+  let t = get(b:, 'flowlens_timing', {})
+  return printf(' %s  |  :Flow downstream / upstream / marks / clear  |  relevant %d  anomalies %d ',
+        \ get(t, 'mode', 'idle'), get(t, 'relevant_tokens', 0),
+        \ get(t, 'anomalies', 0))
+endfunction
+set statusline=%{FlowLensFooter()}

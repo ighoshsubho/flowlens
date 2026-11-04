@@ -1,0 +1,5 @@
+set nocompatible
+execute 'set rtp+=' . expand('<sfile>:p:h:h') . '/vim'
+syntax off
+filetype off
+set shortmess+=all
