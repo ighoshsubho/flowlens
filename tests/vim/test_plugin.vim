@@ -176,6 +176,29 @@ call s:check('stop-then-restart', after == 0 && ok && !empty(s:props(cb)),
       \ 'after_stop=' . after . ' after_restart=' . len(s:props(cb)))
 Flow clear
 
+" ---- 12. bare :Flow lists the commands
+Flow
+let hln = 0
+let husage = 0
+for b in range(1, bufnr('$'))
+  if bufexists(b) && getbufvar(b, '&filetype') ==# 'flowlenshelp'
+    let hln = len(getbufline(b, 1, '$'))
+    let husage = match(getbufline(b, 1, '$'), 'USAGE') >= 0 ? 1 : 0
+  endif
+endfor
+call s:check('help-buffer', hln > 8 && husage, 'lines=' . hln . ' usage=' . husage)
+Flow close
+
+" ---- 13. a range selects which occurrence is analysed
+edit! /tmp/flowlens_demo.c
+let cb = bufnr('%')
+call cursor(3, 17)
+3,3Flow downstream
+let ok = s:wait(cb, 4000)
+let got = s:props(cb)
+call s:check('range-selects-occurrence', ok && !empty(got), string(got))
+Flow clear
+
 call writefile([json_encode({'editor': has('nvim') ? 'neovim' : 'vim',
       \ 'checks': s:report})], '/tmp/flowlens_editor_tests.json')
 qa!

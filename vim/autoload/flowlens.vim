@@ -26,12 +26,17 @@ endfunction
 
 function! flowlens#complete(arglead, cmdline, cursorpos) abort
   return filter(['downstream', 'upstream', 'clear', 'inspect', 'info',
-        \ 'close', 'stop', 'marks'], 'stridx(v:val, a:arglead) == 0')
+        \ 'marks', 'close', 'stop', 'help'], 'stridx(v:val, a:arglead) == 0')
 endfunction
 
-function! flowlens#command(arg) abort
+function! flowlens#command(arg, ...) abort
+  let l1 = a:0 >= 3 ? a:1 : 0
+  let l2 = a:0 >= 3 ? a:2 : 0
+  let ranged = a:0 >= 3 ? a:3 : 0
   let a = tolower(a:arg)
-  if a ==# 'clear'
+  if a ==# '' || a ==# 'help'
+    call flowlens#help()
+  elseif a ==# 'clear'
     call flowlens#clear()
   elseif a ==# 'close'
     call flowlens#close()
@@ -40,15 +45,15 @@ function! flowlens#command(arg) abort
   elseif a ==# 'marks'
     call flowlens#marks_report()
   elseif a ==# 'inspect'
-    call flowlens#run('downstream', 1)
+    call flowlens#run('downstream', 1, l1, l2, ranged)
   elseif a ==# 'info'
     call flowlens#info()
   elseif a ==# 'downstream' || a ==# 'upstream'
-    call flowlens#run(a, 0)
+    call flowlens#run(a, 0, l1, l2, ranged)
   else
     echohl ErrorMsg
     echomsg 'FlowLens: unknown mode "' . a:arg
-          \ . '" (downstream|upstream|clear|inspect|info|close|stop)'
+          \ . '" — try :Flow for the command list'
     echohl None
   endif
 endfunction
@@ -146,7 +151,22 @@ function! s:line_offsets(lines) abort
   return offs
 endfunction
 
-function! flowlens#run(mode, inspect) abort
+" A range (visual selection, or :N,M Flow) only decides *which* occurrence is
+" analysed: FlowLens labels one occurrence at a time.  The cursor position
+" inside the range wins, which is what a visual selection means in Vim (the
+" cursor stays on the selected text).  If the cursor is outside the range, the
+" first non-blank character of the range is used.
+function! s:range_cursor(l1, l2) abort
+  let offs = s:line_offsets(getline(1, '$'))
+  let pos = getcurpos()
+  if pos[1] >= a:l1 && pos[1] <= a:l2
+    return offs[pos[1] - 1] + (pos[2] - 1)
+  endif
+  let col = match(getline(a:l1), '\S')
+  return offs[a:l1 - 1] + (col >= 0 ? col : 0)
+endfunction
+
+function! flowlens#run(mode, inspect, ...) abort
   if !s:ensure()
     return
   endif
@@ -154,8 +174,12 @@ function! flowlens#run(mode, inspect) abort
   let lines = getline(1, '$')
   let text = join(lines, "\n")
   let offs = s:line_offsets(lines)
-  let pos = getcurpos()
-  let cursor = offs[pos[1] - 1] + (pos[2] - 1)
+  if a:0 >= 3 && a:3 != 0
+    let cursor = s:range_cursor(a:1, a:2)
+  else
+    let pos = getcurpos()
+    let cursor = offs[pos[1] - 1] + (pos[2] - 1)
+  endif
   let s:next_id += 1
   let tick = b:changedtick
   let req = {'id': s:next_id, 'tick': tick, 'text': text, 'cursor': cursor,
@@ -503,6 +527,48 @@ function! flowlens#stop() abort
   let s:job = v:null
   let s:req = {}
   echomsg 'FlowLens: highlights cleared, helper stopped'
+endfunction
+
+" ---------------------------------------------------------------- help
+function! flowlens#help() abort
+  let lines = [
+        \ 'FlowLens - neural information flow from raw C bytes',
+        \ '',
+        \ 'USAGE',
+        \ '  :Flow downstream      what the occurrence under the cursor feeds',
+        \ '  :Flow upstream        what that occurrence was built from',
+        \ '  :Flow clear           remove every FlowLens highlight',
+        \ '  :Flow marks           list every painted span (line:col, group, text)',
+        \ '  :Flow inspect         scratch buffer with the per-token trace',
+        \ '  :Flow info            supported subset, limits, measured timings',
+        \ '  :Flow close           close the scratch window, keep highlights',
+        \ '  :Flow stop            close, clear, stop the helper',
+        \ '  :Flow                 this list (also  :Flow help)',
+        \ '',
+        \ 'WHICH OCCURRENCE',
+        \ '  Put the cursor on an identifier and run downstream or upstream.',
+        \ '  On a definition you get everything derived from that value; on a',
+        \ '  read you get what the value it consumed flows into.  Selecting an',
+        \ '  identifier and running :Flow is occurrence-level: the later',
+        \ '  "x = 0" is a different occurrence from "int x = ...".',
+        \ '',
+        \ 'VISUAL SELECTION',
+        \ '  Select a line or a word, press : then type  Flow downstream',
+        \ "  (Vim inserts '<,'> for you).  The occurrence analysed is the",
+        \ '  first identifier inside the selection.',
+        \ '',
+        \ '  Tab completion works:  :Flow <Tab>',
+        \ '',
+        \ 'OPTIONS  (set before the plugin loads, or with :let)',
+        \ '  g:flowlens_dim     0 to leave unrelated text at normal colour',
+        \ '  g:flowlens_root    path to this checkout',
+        \ '  g:flowlens_python  interpreter with numpy',
+        \ '  g:flowlens_colors  override the three highlight groups',
+        \ '',
+        \ 'Printed spans use FlowLensSelected / FlowLensRelevant / FlowLensDim;',
+        \ 'restyle them with :highlight if the defaults are hard to see.',
+        \ ]
+  call s:scratch(lines, 'flowlenshelp')
 endfunction
 
 " ---------------------------------------------------------------- info

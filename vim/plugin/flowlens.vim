@@ -50,8 +50,8 @@ if !exists('g:flowlens_colors')
   let g:flowlens_colors = {}
 endif
 
-command! -nargs=1 -complete=customlist,flowlens#complete Flow
-      \ call flowlens#command(<q-args>)
+command! -nargs=* -range -complete=customlist,flowlens#complete Flow
+      \ call flowlens#command(<q-args>, <line1>, <line2>, <range>)
 
 augroup flowlens
   autocmd!

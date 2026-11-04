@@ -95,6 +95,7 @@ runtimepath), `sudo vim` (different `$HOME`), or a plugin manager that resets
 ```
 :Flow downstream    highlight what the occurrence under the cursor flows into
 :Flow upstream      highlight what it was computed from
+:Flow               list every command and option (also :Flow help)
 :Flow clear         remove highlights
 :Flow inspect       scratch buffer with the network trace (tokens, slots,
                     value nodes, MACs, limits, cold start)
@@ -103,6 +104,19 @@ runtimepath), `sudo vim` (different `$HOME`), or a plugin manager that resets
 :Flow close         close the FlowLens scratch window(s)
 :Flow stop          close them, clear highlights and stop the helper process
 ```
+
+Tab completion works: `:Flow <Tab>`. A visual selection also works — select the
+text, press `:`, and type `Flow downstream` (Vim inserts `'<,'>` for you):
+
+```
+v  select an identifier  :'<,'>Flow downstream
+7,7Flow upstream                        " explicit range
+```
+
+A range only decides *which occurrence* is analysed: the cursor position inside
+the range wins, otherwise the first non-blank character of the range. Labels are
+per occurrence, not per name, so the `x` in `int x = ...` and the `x` in a later
+`x = 0` give different answers.
 
 `:Flow inspect` and `:Flow info` reuse a single scratch window, so running them
 repeatedly does not stack splits. `:Flow stop` is the full reset; the next
